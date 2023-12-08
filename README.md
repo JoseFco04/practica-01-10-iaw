@@ -53,6 +53,20 @@ sed -i "s/IP_HTTP_SERVER_2/$IP_HTTP_SERVER_1/" /etc/apache2/sites-available/load
 ~~~
 a2ensite load-balancer.conf 
 ~~~
+### Este archivo debe estar configurado previamente así:
+~~~
+<VirtualHost *:80>
+    <Proxy balancer://mycluster>
+        # Server 1
+        BalancerMember http://IP_HTTP_SERVER_1
+
+        # Server 2
+        BalancerMember http://IP_HTTP_SERVER_2
+    </Proxy>
+
+    ProxyPass / balancer://mycluster/
+</VirtualHost>
+~~~
 #### Deshabilitamos el VirtualHost que tiene Apache por defecto
 ~~~
 a2dissite 000-default.conf
@@ -60,4 +74,9 @@ a2dissite 000-default.conf
 #### Reiniciamos el servicio de apache
 ~~~
 systemctl restart apache2
-~~~ 
+~~~
+### Ya tendriamos configurado el balanceador. Ahora nos metemos en la máquina del frontend nuevo y instalamos los mismos  scripts que instalamos en el otro frontend.(El install_front-end,backend y los deploy).
+### Una vez hecho esto deberíamos ver como desde el dominio que tenemos que ponerle la ip pública del balanceador cambia entre los contenidos de los dos frontales.
+# Y ya tendriamos configuurado el balanceador entre los dos frontales.
+
+
