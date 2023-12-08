@@ -75,7 +75,7 @@ a2dissite 000-default.conf
 ~~~
 systemctl restart apache2
 ~~~
-### Ya tendriamos configurado el balanceador. Ahora nos metemos en la máquina del frontend nuevo y instalamos los mismos  scripts que instalamos en el otro frontend.(El install_front-end,backend y los deploy).
+### Ya tendriamos configurado el balanceador. Previamente a ello nos deberiamos haber metido en la máquina del frontend nuevo y instalaríamos los mismos scripts que instalamos en el otro frontend.(El install_front-end,backend y los deploy).
 ### Una vez hecho esto deberíamos ver como desde el dominio que tenemos que ponerle la ip pública del balanceador cambia entre los contenidos de los dos frontales.
 # Y ya tendriamos configuurado el balanceador entre los dos frontales.
 
